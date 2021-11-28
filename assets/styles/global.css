@@ -31,6 +31,10 @@ h2 {
   text-align: center;
 }
 
+#title.newfont {
+  font-family: 'Brush Script MT', cursive;
+}
+
 body>header {
   display: grid;
   height: 20px;

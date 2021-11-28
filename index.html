@@ -14,6 +14,8 @@
   <!-- Main Stylesheet & Scripts -->
   <link rel="stylesheet" href="assets/styles/global.css" />
   <script src="assets/scripts/partyHorn.js" type="module"></script>
+
+  <script src="https://unpkg.com/launchdarkly-js-client-sdk@2"></script>
 </head>
 
 <body>
@@ -42,6 +44,26 @@
       <audio class="hidden" src=""></audio>
     </section>
   </main>
+
+  <script>
+    var user = {
+      key: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+    };
+  
+    var ldclient = LDClient.initialize('61a2e70839bde50f5725ab88', user);
+  
+    function render() {
+      var shouldShow = ldclient.variation('blue-background', false);
+      if(shouldShow){
+        document.body.classList.add("blue");
+      }
+      
+    }
+  
+    ldclient.on('ready', render);
+    ldclient.on('change', render);
+  </script>
+  
 </body>
 
 </html>
